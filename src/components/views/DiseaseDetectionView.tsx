@@ -151,17 +151,53 @@ export const DiseaseDetectionView: React.FC<DiseaseDetectionViewProps> = ({
       // 3. Auto-detect crop intent from filename keywords
       const lower = file.name.toLowerCase();
       if (
+        lower.includes('blueberry') ||
+        lower.includes('blue_berry') ||
+        lower.includes('vaccinium')
+      ) {
+        setCropHint('Blueberry');
+        setCropFilter('Blueberry');
+      } else if (
+        lower.includes('chilli') ||
+        lower.includes('chili') ||
+        lower.includes('mirch')
+      ) {
+        setCropHint('Chilli');
+        setCropFilter('Chilli');
+      } else if (
         lower.includes('pepper') ||
         lower.includes('bell') ||
         lower.includes('capsicum') ||
-        lower.includes('mirch') ||
         lower.includes('shimla') ||
-        lower.includes('chili') ||
-        lower.includes('chilli') ||
         lower.includes('pimiento')
       ) {
         setCropHint('Bell Pepper (Capsicum)');
         setCropFilter('Bell Pepper (Capsicum)');
+      } else if (lower.includes('strawberry') || lower.includes('fragaria')) {
+        setCropHint('Strawberry');
+        setCropFilter('Strawberry');
+      } else if (lower.includes('peach') || lower.includes('prunus persica')) {
+        setCropHint('Peach');
+        setCropFilter('Peach');
+      } else if (lower.includes('cherry') || lower.includes('cerasus')) {
+        setCropHint('Cherry');
+        setCropFilter('Cherry');
+      } else if (
+        lower.includes('orange') ||
+        lower.includes('citrus') ||
+        lower.includes('santra') ||
+        lower.includes('mosambi') ||
+        lower.includes('lemon') ||
+        lower.includes('nimbu')
+      ) {
+        setCropHint('Orange (Citrus)');
+        setCropFilter('Orange (Citrus)');
+      } else if (lower.includes('squash') || lower.includes('kaddu') || lower.includes('cucurbit')) {
+        setCropHint('Squash');
+        setCropFilter('Squash');
+      } else if (lower.includes('soybean') || lower.includes('soya')) {
+        setCropHint('Soybean');
+        setCropFilter('Soybean');
       } else if (lower.includes('potato') || lower.includes('aloo')) {
         setCropHint('Potato');
         setCropFilter('Potato');

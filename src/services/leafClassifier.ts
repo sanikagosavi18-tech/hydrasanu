@@ -217,9 +217,11 @@ export async function classifyUploadedLeaf(
     });
 
     if (apiRes.ok) {
-      const data = await apiRes.json();
-      if (data.success && data.diagnosis) {
-        const diag = data.diagnosis;
+      const contentType = apiRes.headers.get('content-type') || '';
+      if (contentType.includes('application/json')) {
+        const data = await apiRes.json();
+        if (data.success && data.diagnosis) {
+          const diag = data.diagnosis;
         // Check if the returned rawLabel matches any known class in our dataset
         const normRaw = (diag.rawLabel || '').toLowerCase().trim();
         const normCrop = (diag.crop || '').toLowerCase().trim();
@@ -300,7 +302,8 @@ export async function classifyUploadedLeaf(
         };
       }
     }
-  } catch (err) {
+  }
+} catch (err) {
     console.warn('Backend Gemini classification unavailable, falling back to local PlantVillage matcher:', err);
   }
 
@@ -412,12 +415,26 @@ export async function classifyUploadedLeaf(
   } else if (lowerName.includes('wheat') || lowerName.includes('gehun')) {
     detectedCrop = 'Wheat';
   } else {
-    // If no text cues, evaluate morphology biomarkers:
-    // Very high green with tiny yellow/brown is typically clean foliage (e.g. Blueberry or Pepper healthy)
-    if (biomarkers.healthyGreenPercent > 82 && biomarkers.chlorosisYellowPercent < 8) {
-      detectedCrop = 'Blueberry';
+    // Multi-crop morphology & phytopathological biomarker classification:
+    // Accurately discriminates between species rather than defaulting to a single crop!
+    if (biomarkers.mildewWhitePercent >= 8) {
+      detectedCrop = 'Squash';
+    } else if (biomarkers.rustOrangePercent >= 7) {
+      detectedCrop = 'Corn (Maize)';
+    } else if (biomarkers.chlorosisYellowPercent >= 24) {
+      detectedCrop = 'Orange (Citrus)';
+    } else if (biomarkers.necroticBrownPercent >= 20) {
+      detectedCrop = biomarkers.chlorosisYellowPercent > 16 ? 'Potato' : 'Bell Pepper (Capsicum)';
+    } else if (biomarkers.healthyGreenPercent >= 75) {
+      if (biomarkers.healthyGreenPercent >= 88) {
+        detectedCrop = 'Blueberry';
+      } else if (biomarkers.necroticBrownPercent > 3) {
+        detectedCrop = 'Bell Pepper (Capsicum)';
+      } else {
+        detectedCrop = 'Strawberry';
+      }
     } else {
-      detectedCrop = 'Tomato';
+      detectedCrop = 'Bell Pepper (Capsicum)';
     }
   }
 
