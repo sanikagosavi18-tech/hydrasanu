@@ -472,6 +472,294 @@ export const PLANT_VILLAGE_CLASSES: PlantVillageClass[] = [
       { label: 'Pepper,_bell___Bacterial_spot', prob: 0.2 },
     ],
   },
+
+  // --- BLUEBERRY CLASSES ---
+  {
+    classId: 'pv-blu-1',
+    rawLabel: 'Blueberry___healthy',
+    crop: 'Blueberry',
+    disease: 'Healthy Blueberry Foliage',
+    scientificPathogen: 'None (Optimal Plant Health)',
+    severity: 'Healthy',
+    confidence: 99.7,
+    kaggleSamplesCount: 1502,
+    kaggleAccuracy: 99.8,
+    imageUrl: 'https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=600&auto=format&fit=crop&q=80',
+    symptoms: [
+      'Glossy dark-green to blue-green simple leaves with smooth or finely ciliolate margins',
+      'Paler green underside with fine reticulate venation and absence of necrotic spotting',
+      'Sturdy reddish-green woody twigs and healthy floral buds'
+    ],
+    organicTreatment: 'Maintain acidic soil pH (4.5–5.2) using pine needle or peat moss mulch and organic sulfur.',
+    chemicalTreatment: 'No chemical treatment required for healthy foliage. Monitor for Mummy Berry in spring.',
+    prevention: 'Ensure well-drained acidic soil and avoid alkaline irrigation water.',
+    topProbabilities: [
+      { label: 'Blueberry___healthy', prob: 99.7 },
+      { label: 'Pepper,_bell___healthy', prob: 0.2 },
+      { label: 'Cherry_(including_sour)___healthy', prob: 0.1 },
+    ],
+  },
+
+  // --- STRAWBERRY CLASSES ---
+  {
+    classId: 'pv-str-1',
+    rawLabel: 'Strawberry___Leaf_scorch',
+    crop: 'Strawberry',
+    disease: 'Leaf Scorch',
+    scientificPathogen: 'Diplocarpon earlianum (Fungal)',
+    severity: 'Moderate',
+    confidence: 97.8,
+    kaggleSamplesCount: 1109,
+    kaggleAccuracy: 98.4,
+    imageUrl: 'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=600&auto=format&fit=crop&q=80',
+    symptoms: [
+      'Irregular purple to dark reddish blotches on trifoliate leaf upper surface',
+      'Lesions enlarge and coalesce, giving foliage a scorched, burned appearance',
+      'In severe cases, leaf margins curl upward and dry out completely'
+    ],
+    organicTreatment: 'Apply Bordeaux mixture (1%) or bio-fungicide Bacillus subtilis before bloom.',
+    chemicalTreatment: 'Spray Captan 50 WP @ 2.5g/L or Pyraclostrobin + Boscalid @ 1.2g/L of water.',
+    prevention: 'Drip irrigation instead of overhead sprinklers; remove and burn scorched foliage after harvest.',
+    topProbabilities: [
+      { label: 'Strawberry___Leaf_scorch', prob: 97.8 },
+      { label: 'Strawberry___healthy', prob: 1.5 },
+      { label: 'Apple___Black_rot', prob: 0.7 },
+    ],
+  },
+  {
+    classId: 'pv-str-2',
+    rawLabel: 'Strawberry___healthy',
+    crop: 'Strawberry',
+    disease: 'Healthy Strawberry Plant',
+    scientificPathogen: 'None (Optimal Plant Health)',
+    severity: 'Healthy',
+    confidence: 99.6,
+    kaggleSamplesCount: 456,
+    kaggleAccuracy: 99.8,
+    imageUrl: 'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=600&auto=format&fit=crop&q=80',
+    symptoms: [
+      'Bright emerald-green trifoliate leaves with deep prominent serrated edges',
+      'Vigorous runner production and clean white floral blossoms',
+      'No fungal blotches or angular chlorosis'
+    ],
+    organicTreatment: 'Mulch crowns with sterile straw to prevent fruit soil contact.',
+    chemicalTreatment: 'No chemical intervention required.',
+    prevention: 'Crop rotation every 3 years; maintain raised strawberry beds.',
+    topProbabilities: [
+      { label: 'Strawberry___healthy', prob: 99.6 },
+      { label: 'Strawberry___Leaf_scorch', prob: 0.4 },
+    ],
+  },
+
+  // --- PEACH CLASSES ---
+  {
+    classId: 'pv-pch-1',
+    rawLabel: 'Peach___Bacterial_spot',
+    crop: 'Peach',
+    disease: 'Bacterial Spot',
+    scientificPathogen: 'Xanthomonas campestris pv. pruni',
+    severity: 'Severe',
+    confidence: 96.9,
+    kaggleSamplesCount: 2297,
+    kaggleAccuracy: 97.8,
+    imageUrl: 'https://images.unsplash.com/photo-1595166667155-d4193237a6b2?w=600&auto=format&fit=crop&q=80',
+    symptoms: [
+      'Angular purple to dark brown water-soaked spots on slender lanceolate leaves',
+      'Centers of lesions drop out leaving a shot-hole appearance; leaf tip turns yellow and drops',
+      'Deep pitted cracked lesions on peach fruit skin'
+    ],
+    organicTreatment: 'Dormant copper sprays in late autumn and late winter before bud swell.',
+    chemicalTreatment: 'Oxytetracycline @ 1.5g/L or Copper Hydroxide @ 1.5g/L during petal fall.',
+    prevention: 'Avoid planting in light sandy soils without windbreaks; select resistant cultivars.',
+    topProbabilities: [
+      { label: 'Peach___Bacterial_spot', prob: 96.9 },
+      { label: 'Peach___healthy', prob: 2.1 },
+      { label: 'Pepper,_bell___Bacterial_spot', prob: 1.0 },
+    ],
+  },
+  {
+    classId: 'pv-pch-2',
+    rawLabel: 'Peach___healthy',
+    crop: 'Peach',
+    disease: 'Healthy Peach Foliage',
+    scientificPathogen: 'None (Optimal Plant Health)',
+    severity: 'Healthy',
+    confidence: 99.8,
+    kaggleSamplesCount: 360,
+    kaggleAccuracy: 99.9,
+    imageUrl: 'https://images.unsplash.com/photo-1595166667155-d4193237a6b2?w=600&auto=format&fit=crop&q=80',
+    symptoms: [
+      'Glossy, slender willow-like lanceolate leaves with fine sharp serrations',
+      'Clean shoot tips and vigorous terminal bud extension',
+      'Zero shot-hole perforations or leaf curl distortion'
+    ],
+    organicTreatment: 'Apply balanced chelated zinc spray after harvest.',
+    chemicalTreatment: 'No chemical intervention required.',
+    prevention: 'Annual winter pruning to open up center of tree for air circulation.',
+    topProbabilities: [
+      { label: 'Peach___healthy', prob: 99.8 },
+      { label: 'Peach___Bacterial_spot', prob: 0.2 },
+    ],
+  },
+
+  // --- CHERRY CLASSES ---
+  {
+    classId: 'pv-chr-1',
+    rawLabel: 'Cherry_(including_sour)___Powdery_mildew',
+    crop: 'Cherry',
+    disease: 'Powdery Mildew',
+    scientificPathogen: 'Podosphaera clandestina (Fungal)',
+    severity: 'Moderate',
+    confidence: 98.1,
+    kaggleSamplesCount: 1052,
+    kaggleAccuracy: 98.7,
+    imageUrl: 'https://images.unsplash.com/photo-1528825871115-3581a5387919?w=600&auto=format&fit=crop&q=80',
+    symptoms: [
+      'White powdery mycelial felt patches on young leaves and terminal shoots',
+      'Infected leaves become curled, puckered, and folded upward lengthwise',
+      'Premature defoliation and delayed ripening of cherry fruit'
+    ],
+    organicTreatment: 'Foliar spray of Potassium bicarbonate @ 3g/L or wettable sulfur @ 2.5g/L.',
+    chemicalTreatment: 'Apply Myclobutanil 10 WP @ 0.5g/L or Trifloxystrobin 50 WG @ 0.3g/L at shuck fall.',
+    prevention: 'Prune dense canopies to improve sunlight and air penetration; eliminate wild host cherries.',
+    topProbabilities: [
+      { label: 'Cherry_(including_sour)___Powdery_mildew', prob: 98.1 },
+      { label: 'Cherry_(including_sour)___healthy', prob: 1.4 },
+      { label: 'Apple___Apple_scab', prob: 0.5 },
+    ],
+  },
+  {
+    classId: 'pv-chr-2',
+    rawLabel: 'Cherry_(including_sour)___healthy',
+    crop: 'Cherry',
+    disease: 'Healthy Cherry Foliage',
+    scientificPathogen: 'None (Optimal Plant Health)',
+    severity: 'Healthy',
+    confidence: 99.7,
+    kaggleSamplesCount: 854,
+    kaggleAccuracy: 99.9,
+    imageUrl: 'https://images.unsplash.com/photo-1528825871115-3581a5387919?w=600&auto=format&fit=crop&q=80',
+    symptoms: [
+      'Broadly ovate double-serrated leaves with prominent pair of red glands on petiole',
+      'Sturdy fruiting spurs and lustrous dark green foliage',
+      'Absence of powdery mildew talc or leaf spot lesions'
+    ],
+    organicTreatment: 'Apply organic compost tea in early spring.',
+    chemicalTreatment: 'No chemical intervention required.',
+    prevention: 'Avoid excessive nitrogen fertilization that produces succulent susceptible shoots.',
+    topProbabilities: [
+      { label: 'Cherry_(including_sour)___healthy', prob: 99.7 },
+      { label: 'Cherry_(including_sour)___Powdery_mildew', prob: 0.3 },
+    ],
+  },
+
+  // --- ORANGE / CITRUS CLASSES ---
+  {
+    classId: 'pv-cit-1',
+    rawLabel: 'Orange___Haunglongbing_(Citrus_greening)',
+    crop: 'Orange (Citrus)',
+    disease: 'Citrus Greening (Huanglongbing)',
+    scientificPathogen: 'Candidatus Liberibacter asiaticus (Bacterial vector: Diaphorina citri)',
+    severity: 'Severe',
+    confidence: 98.9,
+    kaggleSamplesCount: 5507,
+    kaggleAccuracy: 99.4,
+    imageUrl: 'https://images.unsplash.com/photo-1582979512210-99b6a53386f9?w=600&auto=format&fit=crop&q=80',
+    symptoms: [
+      'Asymmetrical blotchy mottle chlorosis across leaf veins (yellow patches not mirroring each other)',
+      'Veins become corky, swollen, and yellowed; small, narrow, upright leaves',
+      'Fruit remains small, lopsided, green at bottom, with bitter acidic taste'
+    ],
+    organicTreatment: 'Vector control: Spray Neem oil 1500 ppm + Karanj oil emulsion. Rogue out infected trees immediately.',
+    chemicalTreatment: 'Control Asian citrus psyllid: Spray Imidacloprid 17.8 SL @ 0.5ml/L or Thiamethoxam 25 WG @ 0.3g/L.',
+    prevention: 'Plant certified disease-free nursery stock; inspect flush shoots weekly for psyllid nymphs.',
+    topProbabilities: [
+      { label: 'Orange___Haunglongbing_(Citrus_greening)', prob: 98.9 },
+      { label: 'Citrus___healthy', prob: 0.8 },
+      { label: 'Apple___Apple_scab', prob: 0.3 },
+    ],
+  },
+
+  // --- SQUASH CLASSES ---
+  {
+    classId: 'pv-squ-1',
+    rawLabel: 'Squash___Powdery_mildew',
+    crop: 'Squash',
+    disease: 'Powdery Mildew',
+    scientificPathogen: 'Podosphaera xanthii (Fungal)',
+    severity: 'Moderate',
+    confidence: 98.5,
+    kaggleSamplesCount: 1835,
+    kaggleAccuracy: 99.1,
+    imageUrl: 'https://images.unsplash.com/photo-1570586435880-8032408b74c0?w=600&auto=format&fit=crop&q=80',
+    symptoms: [
+      'White powdery talcum-like spots expanding across large rough 5-lobed leaves',
+      'Foliage turns chlorotic yellow, withers, and dries to a crisp paper-like texture',
+      'Premature plant senescence leading to fruit sunscald and poor flavor'
+    ],
+    organicTreatment: 'Spray baking soda (potassium bicarbonate) @ 5g/L + liquid soap, or diluted milk spray (1:9).',
+    chemicalTreatment: 'Apply Hexaconazole 5 SC @ 1ml/L or Azoxystrobin 23 SC @ 1ml/L of water at first symptom onset.',
+    prevention: 'Wide spacing (1.5–2m between hills) for sunlight penetration; grow powdery-mildew resistant squash varieties.',
+    topProbabilities: [
+      { label: 'Squash___Powdery_mildew', prob: 98.5 },
+      { label: 'Squash___healthy', prob: 1.2 },
+      { label: 'Cucumber___Powdery_mildew', prob: 0.3 },
+    ],
+  },
+
+  // --- SOYBEAN CLASSES ---
+  {
+    classId: 'pv-soy-1',
+    rawLabel: 'Soybean___healthy',
+    crop: 'Soybean',
+    disease: 'Healthy Soybean Foliage',
+    scientificPathogen: 'None (Optimal Plant Health)',
+    severity: 'Healthy',
+    confidence: 99.6,
+    kaggleSamplesCount: 5090,
+    kaggleAccuracy: 99.8,
+    imageUrl: 'https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?w=600&auto=format&fit=crop&q=80',
+    symptoms: [
+      'Trifoliate leaves with uniform rich green color and soft silky pubescence on leaflets',
+      'Erect sturdy stem with vigorous node branching and abundant pod formation',
+      'No rust pustules, frog-eye spotting, or defoliation'
+    ],
+    organicTreatment: 'Seed treatment with Rhizobium japonicum bio-inoculant for nitrogen fixation.',
+    chemicalTreatment: 'No chemical intervention required.',
+    prevention: 'Ensure balanced phosphate nutrition and maintain effective weed control.',
+    topProbabilities: [
+      { label: 'Soybean___healthy', prob: 99.6 },
+      { label: 'Soybean___Rust', prob: 0.3 },
+      { label: 'Tomato___healthy', prob: 0.1 },
+    ],
+  },
+
+  // --- CHILLI / HOT PEPPER CLASSES ---
+  {
+    classId: 'pv-chl-1',
+    rawLabel: 'Chilli___Anthracnose',
+    crop: 'Chilli',
+    disease: 'Anthracnose (Die-back / Fruit Rot)',
+    scientificPathogen: 'Colletotrichum capsici (Fungal)',
+    severity: 'Severe',
+    confidence: 97.5,
+    kaggleSamplesCount: 1200,
+    kaggleAccuracy: 98.4,
+    imageUrl: 'https://images.unsplash.com/photo-1588252303782-cb80119abd6d?w=600&auto=format&fit=crop&q=80',
+    symptoms: [
+      'Circular sunken dark spots with concentric rings of salmon-pink acervuli spores on fruit',
+      'Die-back of twigs from tip downwards; twigs turn bleached straw-colored',
+      'Small circular gray spots with dark borders on leaves'
+    ],
+    organicTreatment: 'Spray Trichoderma viride @ 5g/L + Neem seed oil 5ml/L at flowering.',
+    chemicalTreatment: 'Spray Azoxystrobin 18.2% + Difenoconazole 11.4% SC @ 1ml/L or Mancozeb 75 WP @ 2.5g/L.',
+    prevention: 'Use disease-free seed; avoid overhead sprinkler watering during fruit development.',
+    topProbabilities: [
+      { label: 'Chilli___Anthracnose', prob: 97.5 },
+      { label: 'Pepper,_bell___Bacterial_spot', prob: 1.8 },
+      { label: 'Chilli___healthy', prob: 0.7 },
+    ],
+  },
 ];
 
 // Preconfigured demo farmer profiles for quick 1-click Sign In

@@ -102,13 +102,21 @@ export const DiseaseDetectionView: React.FC<DiseaseDetectionViewProps> = ({
   const [currentResult, setCurrentResult] = useState<DiagnosisRecord | null>(null);
 
   const cropFilterOptions = [
-    { id: 'All', label: language === 'hi' ? 'सभी फसलें' : language === 'mr' ? 'सर्व पिके' : 'All' },
-    { id: 'Tomato', label: language === 'hi' ? 'टमाटर' : language === 'mr' ? 'टोमॅटो' : 'Tomato' },
-    { id: 'Potato', label: language === 'hi' ? 'आलू' : language === 'mr' ? 'बटाटा' : 'Potato' },
-    { id: 'Corn (Maize)', label: language === 'hi' ? 'मक्का' : language === 'mr' ? 'मका' : 'Corn (Maize)' },
-    { id: 'Apple', label: language === 'hi' ? 'सेब' : language === 'mr' ? 'सफरचंद' : 'Apple' },
-    { id: 'Grape', label: language === 'hi' ? 'अंगूर' : language === 'mr' ? 'द्राक्षे' : 'Grape' },
-    { id: 'Bell Pepper (Capsicum)', label: language === 'hi' ? 'शिमला मिर्च' : language === 'mr' ? 'ढोबळी मिरची' : 'Bell Pepper' },
+    { id: 'All', label: language === 'hi' ? 'सभी फसलें' : language === 'mr' ? 'सर्व पिके' : 'All Crops' },
+    { id: 'Bell Pepper (Capsicum)', label: language === 'hi' ? '🫑 शिमला मिर्च' : language === 'mr' ? '🫑 ढोबळी मिरची' : '🫑 Bell Pepper' },
+    { id: 'Blueberry', label: language === 'hi' ? '🫐 ब्लूबेरी' : language === 'mr' ? '🫐 ब्लूबेरी' : '🫐 Blueberry' },
+    { id: 'Chilli', label: language === 'hi' ? '🌶️ मिर्च' : language === 'mr' ? '🌶️ मिरची' : '🌶️ Chilli' },
+    { id: 'Tomato', label: language === 'hi' ? '🍅 टमाटर' : language === 'mr' ? '🍅 टोमॅटो' : '🍅 Tomato' },
+    { id: 'Potato', label: language === 'hi' ? '🥔 आलू' : language === 'mr' ? '🥔 बटाटा' : '🥔 Potato' },
+    { id: 'Corn (Maize)', label: language === 'hi' ? '🌽 मक्का' : language === 'mr' ? '🌽 मका' : '🌽 Corn (Maize)' },
+    { id: 'Apple', label: language === 'hi' ? '🍎 सेब' : language === 'mr' ? '🍎 सफरचंद' : '🍎 Apple' },
+    { id: 'Grape', label: language === 'hi' ? '🍇 अंगूर' : language === 'mr' ? '🍇 द्राक्षे' : '🍇 Grape' },
+    { id: 'Strawberry', label: language === 'hi' ? '🍓 स्ट्रॉबेरी' : language === 'mr' ? '🍓 स्ट्रॉबेरी' : '🍓 Strawberry' },
+    { id: 'Peach', label: language === 'hi' ? '🍑 आड़ू' : language === 'mr' ? '🍑 पीच' : '🍑 Peach' },
+    { id: 'Cherry', label: language === 'hi' ? '🍒 चेरी' : language === 'mr' ? '🍒 चेरी' : '🍒 Cherry' },
+    { id: 'Orange (Citrus)', label: language === 'hi' ? '🍊 संतरा' : language === 'mr' ? '🍊 संत्रा' : '🍊 Orange (Citrus)' },
+    { id: 'Squash', label: language === 'hi' ? '🥒 कद्दू / स्क्वैश' : language === 'mr' ? '🥒 भोपळा' : '🥒 Squash' },
+    { id: 'Soybean', label: language === 'hi' ? '🌱 सोयाबीन' : language === 'mr' ? '🌱 सोयाबीन' : '🌱 Soybean' },
   ];
 
   const filteredPlantVillageClasses = PLANT_VILLAGE_CLASSES.filter((item) => {
@@ -538,11 +546,19 @@ export const DiseaseDetectionView: React.FC<DiseaseDetectionViewProps> = ({
             >
               <option value="All">{language === 'hi' ? 'सभी फसलें (ऑटो डिटेक्ट)' : language === 'mr' ? 'सर्व पिके (ऑटो डिटेक्ट)' : 'Auto-Detect Crop'}</option>
               <option value="Bell Pepper (Capsicum)">{language === 'hi' ? '🫑 शिमला मिर्च (Bell Pepper)' : language === 'mr' ? '🫑 ढोबळी मिरची (Bell Pepper)' : '🫑 Bell Pepper (Capsicum)'}</option>
+              <option value="Blueberry">{language === 'hi' ? '🫐 ब्लूबेरी (Blueberry)' : language === 'mr' ? '🫐 ब्लूबेरी (Blueberry)' : '🫐 Blueberry'}</option>
+              <option value="Chilli">{language === 'hi' ? '🌶️ हरी / तीखी मिर्च (Chilli)' : language === 'mr' ? '🌶️ हिरवी / तिखट मिरची (Chilli)' : '🌶️ Chilli / Hot Pepper'}</option>
               <option value="Tomato">{language === 'hi' ? '🍅 टमाटर (Tomato)' : language === 'mr' ? '🍅 टोमॅटो (Tomato)' : '🍅 Tomato'}</option>
               <option value="Potato">{language === 'hi' ? '🥔 आलू (Potato)' : language === 'mr' ? '🥔 बटाटा (Potato)' : '🥔 Potato'}</option>
               <option value="Corn (Maize)">{language === 'hi' ? '🌽 मक्का (Corn)' : language === 'mr' ? '🌽 मका (Corn)' : '🌽 Corn / Maize'}</option>
               <option value="Apple">{language === 'hi' ? '🍎 सेब (Apple)' : language === 'mr' ? '🍎 सफरचंद (Apple)' : '🍎 Apple'}</option>
               <option value="Grape">{language === 'hi' ? '🍇 अंगूर (Grape)' : language === 'mr' ? '🍇 द्राक्षे (Grape)' : '🍇 Grape'}</option>
+              <option value="Strawberry">{language === 'hi' ? '🍓 स्ट्रॉबेरी (Strawberry)' : language === 'mr' ? '🍓 स्ट्रॉबेरी (Strawberry)' : '🍓 Strawberry'}</option>
+              <option value="Peach">{language === 'hi' ? '🍑 आड़ू (Peach)' : language === 'mr' ? '🍑 पीच (Peach)' : '🍑 Peach'}</option>
+              <option value="Cherry">{language === 'hi' ? '🍒 चेरी (Cherry)' : language === 'mr' ? '🍒 चेरी (Cherry)' : '🍒 Cherry'}</option>
+              <option value="Orange (Citrus)">{language === 'hi' ? '🍊 संतरा / नींबू (Citrus)' : language === 'mr' ? '🍊 संत्रा / लिंबू (Citrus)' : '🍊 Orange / Citrus'}</option>
+              <option value="Squash">{language === 'hi' ? '🥒 कद्दू / स्क्वैश (Squash)' : language === 'mr' ? '🥒 भोपळा (Squash)' : '🥒 Squash / Cucurbit'}</option>
+              <option value="Soybean">{language === 'hi' ? '🌱 सोयाबीन (Soybean)' : language === 'mr' ? '🌱 सोयाबीन (Soybean)' : '🌱 Soybean'}</option>
               <option value="Rice">{language === 'hi' ? '🌾 धान / चावल' : language === 'mr' ? '🌾 भात / धान' : '🌾 Rice'}</option>
               <option value="Wheat">{language === 'hi' ? '🌾 गेहूं' : language === 'mr' ? '🌾 गहू' : '🌾 Wheat'}</option>
             </select>
@@ -558,11 +574,19 @@ export const DiseaseDetectionView: React.FC<DiseaseDetectionViewProps> = ({
           {[
             { id: 'All', label: language === 'hi' ? '🔍 ऑटो डिटेक्ट' : language === 'mr' ? '🔍 ऑटो डिटेक्ट' : '🔍 Auto-Detect' },
             { id: 'Bell Pepper (Capsicum)', label: language === 'hi' ? '🫑 शिमला मिर्च' : language === 'mr' ? '🫑 ढोबळी मिरची' : '🫑 Bell Pepper' },
+            { id: 'Blueberry', label: language === 'hi' ? '🫐 ब्लूबेरी' : language === 'mr' ? '🫐 ब्लूबेरी' : '🫐 Blueberry' },
+            { id: 'Chilli', label: language === 'hi' ? '🌶️ मिर्च' : language === 'mr' ? '🌶️ मिरची' : '🌶️ Chilli' },
             { id: 'Tomato', label: language === 'hi' ? '🍅 टमाटर' : language === 'mr' ? '🍅 टोमॅटो' : '🍅 Tomato' },
             { id: 'Potato', label: language === 'hi' ? '🥔 आलू' : language === 'mr' ? '🥔 बटाटा' : '🥔 Potato' },
             { id: 'Corn (Maize)', label: language === 'hi' ? '🌽 मक्का' : language === 'mr' ? '🌽 मका' : '🌽 Corn' },
             { id: 'Apple', label: language === 'hi' ? '🍎 सेब' : language === 'mr' ? '🍎 सफरचंद' : '🍎 Apple' },
             { id: 'Grape', label: language === 'hi' ? '🍇 अंगूर' : language === 'mr' ? '🍇 द्राक्षे' : '🍇 Grape' },
+            { id: 'Strawberry', label: language === 'hi' ? '🍓 स्ट्रॉबेरी' : language === 'mr' ? '🍓 स्ट्रॉबेरी' : '🍓 Strawberry' },
+            { id: 'Peach', label: language === 'hi' ? '🍑 आड़ू' : language === 'mr' ? '🍑 पीच' : '🍑 Peach' },
+            { id: 'Cherry', label: language === 'hi' ? '🍒 चेरी' : language === 'mr' ? '🍒 चेरी' : '🍒 Cherry' },
+            { id: 'Orange (Citrus)', label: language === 'hi' ? '🍊 संतरा' : language === 'mr' ? '🍊 संत्रा' : '🍊 Citrus' },
+            { id: 'Squash', label: language === 'hi' ? '🥒 स्क्वैश' : language === 'mr' ? '🥒 भोपळा' : '🥒 Squash' },
+            { id: 'Soybean', label: language === 'hi' ? '🌱 सोयाबीन' : language === 'mr' ? '🌱 सोयाबीन' : '🌱 Soybean' },
           ].map((cropBtn) => {
             const active = cropHint === cropBtn.id;
             return (
@@ -573,7 +597,12 @@ export const DiseaseDetectionView: React.FC<DiseaseDetectionViewProps> = ({
                   setCropHint(cropBtn.id);
                   setCropFilter(cropBtn.id);
                   if (cropBtn.id !== 'All') {
-                    const firstClass = PLANT_VILLAGE_CLASSES.find((c) => c.crop.includes(cropBtn.id) || (cropBtn.id.includes('Pepper') && c.crop.includes('Pepper')));
+                    const firstClass = PLANT_VILLAGE_CLASSES.find((c) =>
+                      c.crop.toLowerCase().includes(cropBtn.id.toLowerCase()) ||
+                      (cropBtn.id.includes('Pepper') && c.crop.includes('Pepper')) ||
+                      (cropBtn.id.includes('Blueberry') && c.crop.includes('Blueberry')) ||
+                      (cropBtn.id.includes('Orange') && c.crop.includes('Orange'))
+                    );
                     if (firstClass && !uploadedFileName) {
                       setSelectedClass(firstClass);
                       setSelectedImage(firstClass.imageUrl);

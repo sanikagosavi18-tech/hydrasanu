@@ -32,7 +32,6 @@ import { FarmerResourcesView } from './components/views/FarmerResourcesView';
 import { WeatherForecastView } from './components/views/WeatherForecastView';
 import { SignInView } from './components/views/SignInView';
 import { UserProfileModal } from './components/UserProfileModal';
-import { AgriChatBot } from './components/AgriChatBot';
 
 export default function App() {
   // Fresh session access: Always start on sign-in screen without auto-logging into mock user
@@ -355,9 +354,6 @@ export default function App() {
         onUpdateUser={handleUpdateUser}
         onSignOut={handleSignOut}
       />
-
-      {/* Floating Gemini AI AgriBot Chat Assistant */}
-      <AgriChatBot language={language} />
     </div>
   );
 }
