@@ -1,0 +1,6 @@
+{
+  "name": "HydroMind - AI Farmer Assistant",
+  "description": "Smart farming dashboard with Kaggle PlantVillage AI crop disease detection in English, Hindi & Marathi, weather forecasts, knapsack sprayer guides, task planner, fertilizer calculator, and PDF report export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
