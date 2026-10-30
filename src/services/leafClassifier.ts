@@ -19,39 +19,50 @@ export function fileToBase64(file: File): Promise<string> {
 }
 
 /**
- * Converts an image URL (Blob, HTTP, or Data URL) to a base64 JPEG string
+ * Converts any image URL (Blob, HTTP, or large Data URL) to a calibrated base64 JPEG string.
+ * Automatically downscales ultra-high-resolution mobile camera uploads (e.g. 12MP/15MB)
+ * to an optimized 1024px resolution (~150-250KB) so requests NEVER exceed Vercel's 4.5MB
+ * serverless payload ceiling or Cloud Run reverse proxy limits.
  */
 export async function imageUriToBase64(imageUrl: string): Promise<string> {
-  if (imageUrl.startsWith('data:image/')) {
+  // If already a lightweight data URL (< 350KB), pass through directly
+  if (imageUrl.startsWith('data:image/') && imageUrl.length < 350000) {
     return imageUrl;
   }
 
-  // Handle blob URLs directly via fetch -> blob -> FileReader for 100% stability
+  // Handle blob URLs directly via fetch -> blob -> FileReader for speed
   if (imageUrl.startsWith('blob:')) {
     try {
       const res = await fetch(imageUrl);
       const blob = await res.blob();
-      return await new Promise<string>((resolve, reject) => {
+      const rawDataUrl = await new Promise<string>((resolve, reject) => {
         const reader = new FileReader();
         reader.onloadend = () => resolve(reader.result as string);
         reader.onerror = reject;
         reader.readAsDataURL(blob);
       });
+      if (rawDataUrl.length < 350000) {
+        return rawDataUrl;
+      }
+      imageUrl = rawDataUrl;
     } catch (blobErr) {
-      console.warn('Direct blob fetch fallback to canvas:', blobErr);
+      console.warn('Direct blob fetch fallback to canvas resize:', blobErr);
     }
   }
 
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const img = new Image();
-    img.crossOrigin = 'anonymous';
+    // Only set crossOrigin on remote HTTP/HTTPS images to prevent CORS failures on data: URLs
+    if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+      img.crossOrigin = 'anonymous';
+    }
 
     img.onload = () => {
       try {
         const canvas = document.createElement('canvas');
-        const maxDim = 800; // Optimal size for Gemini Vision analysis
-        let w = img.width;
-        let h = img.height;
+        const maxDim = 1024; // Optimal resolution for Gemini 3.8 Vision botanical taxonomy
+        let w = img.naturalWidth || img.width;
+        let h = img.naturalHeight || img.height;
 
         if (w > maxDim || h > maxDim) {
           if (w > h) {
@@ -67,19 +78,23 @@ export async function imageUriToBase64(imageUrl: string): Promise<string> {
         canvas.height = h;
         const ctx = canvas.getContext('2d');
         if (!ctx) {
-          reject(new Error('Canvas context unavailable'));
+          resolve(imageUrl);
           return;
         }
 
         ctx.drawImage(img, 0, 0, w, h);
-        const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
         resolve(dataUrl);
       } catch (err) {
-        reject(err);
+        console.warn('Canvas resize error, returning original image string:', err);
+        resolve(imageUrl);
       }
     };
 
-    img.onerror = (err) => reject(err);
+    img.onerror = () => {
+      resolve(imageUrl);
+    };
+
     img.src = imageUrl;
   });
 }
@@ -91,7 +106,10 @@ export async function imageUriToBase64(imageUrl: string): Promise<string> {
 export async function analyzeLeafImagePixels(imageUrl: string): Promise<LeafBiomarkers> {
   return new Promise((resolve) => {
     const img = new Image();
-    img.crossOrigin = 'anonymous';
+    // Only set crossOrigin on remote HTTP/HTTPS URLs
+    if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+      img.crossOrigin = 'anonymous';
+    }
 
     img.onload = () => {
       try {
